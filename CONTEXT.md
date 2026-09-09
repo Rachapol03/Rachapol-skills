@@ -9,7 +9,7 @@ A directory containing a `SKILL.md` instruction file with YAML frontmatter (`nam
 _Avoid_: prompt file, agent plugin, instruction snippet
 
 **Bucket**:
-A primary organizing directory under `skills/`: `engineering/` (code-centric tools) or `productivity/` (ideation, domain modeling, and session handoffs).
+A primary organizing directory under `skills/`: `engineering/` (code-centric tools) or `productivity/` (ideation, domain modeling, session handoffs, and token efficiency).
 _Avoid_: category folder, skill group
 
 **User-invoked skill**:
@@ -41,6 +41,18 @@ _Avoid_: bug recap, incident summary
 **Handoff**:
 A sanitized markdown summary written to the OS temp directory allowing a fresh agent session to continue in-flight work with zero context bloat.
 
+**Caveman Mode**:
+An ultra-compressed communication protocol (`caveman`) that trims conversational pleasantries, articles, and prose filler while strictly preserving technical substance, code, and errors.
+_Avoid_: brief mode, short chat
+
+**Conventional Commit**:
+A standardized git commit format (`git-commit`) derived by analyzing real diffs to determine type, scope, and semantic description.
+_Avoid_: git message, changelog note
+
+**Skill Discovery**:
+The process of searching, evaluating (installs, security, reputation), and adding agent capabilities from the open ecosystem using `find-skills`.
+_Avoid_: plugin search, add-on store
+
 ## Relationships
 
 - A **Bucket** contains multiple **Skills**
@@ -49,3 +61,6 @@ A sanitized markdown summary written to the OS temp directory allowing a fresh a
 - `spec-to-tasks` consumes the interview output to emit **Tracer-bullet tasks**
 - `debug-mantra` isolates bugs and feeds its breadcrumb ledger to `post-mortem`
 - `handoff` captures current state to bridge across session boundaries
+- `caveman` minimizes token burn and latency during active collaboration without altering persisted code or documentation
+- `git-commit` inspects verified changes and commits them with semantic conventional messaging
+- `find-skills` extends agent capabilities dynamically by discovering and installing skills from skills.sh

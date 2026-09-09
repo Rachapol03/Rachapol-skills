@@ -13,12 +13,13 @@ Skills are organized into two promoted bucket directories under `skills/`:
 
 ---
 
-## The 8 Core Skills
+## The 11 Core Skills
 
 ### 1. Engineering Skills (`skills/engineering/`)
 
 | Skill | Invocation | Purpose |
 | :--- | :--- | :--- |
+| [`git-commit`](./skills/engineering/git-commit/SKILL.md) | **User-invoked** (`/git-commit`) | Analyzes working tree and staged diffs to stage files intelligently and generate standardized Conventional Commit messages. |
 | [`spec-to-tasks`](./skills/engineering/spec-to-tasks/SKILL.md) | **User-invoked** (`/spec-to-tasks`) | Synthesizes conversation and planning into a Technical Specification (with In-Scope vs Out-of-Scope boundaries) and breaks it down into sequential Tracer-Bullet Tasks with explicit dependencies. |
 | [`karpathy-guidelines`](./skills/engineering/karpathy-guidelines/SKILL.md) | **Model-invoked** (Always active) | The execution constitution: Think before coding, Simplicity first (minimal code), Surgical changes (touch only what you must), and Goal-driven execution (verifiable goals). |
 | [`scrutinize`](./skills/engineering/scrutinize/SKILL.md) | **User / Model** (`/scrutinize`) | Outsider-perspective code & plan review. Questions intent, traces actual call paths end-to-end (not just the diff), and verifies claims against edge cases. |
@@ -29,6 +30,8 @@ Skills are organized into two promoted bucket directories under `skills/`:
 
 | Skill | Invocation | Purpose |
 | :--- | :--- | :--- |
+| [`caveman`](./skills/productivity/caveman/SKILL.md) | **User / Model** (`/caveman`) | Ultra-compressed communication mode. Eliminates conversational fluff, pleasantries, and hedging while preserving full technical accuracy, code, and errors to maximize token efficiency. |
+| [`find-skills`](./skills/productivity/find-skills/SKILL.md) | **User / Model** (`/find-skills`) | Discovers, inspects, and installs new agent skills from the open skills.sh ecosystem based on developer queries and task requirements. |
 | [`grill-me`](./skills/productivity/grill-me/SKILL.md) | **User-invoked** (`/grill-me`) | Relentless Socratic interview to stress-test ideas and architecture in-chat without creating workspace files (stateless brainstorming). |
 | [`grill-with-docs`](./skills/productivity/grill-with-docs/SKILL.md) | **User-invoked** (`/grill-with-docs`) | Rigorous Socratic interview for real codebases. Actively establishes ubiquitous language in `CONTEXT.md` and records architectural decisions in `docs/adr/`. |
 | [`handoff`](./skills/productivity/handoff/SKILL.md) | **User-invoked** (`/handoff`) | Compacts current conversation state into a structured handoff document saved to the OS temp directory. Scrubs secrets and provides suggested skills for the receiving agent. |
@@ -45,21 +48,27 @@ flowchart LR
     --> B["2. Blueprint<br/>(/spec-to-tasks)"]
     --> C["3. Implementation<br/>(karpathy-guidelines)"]
     --> D["4. Review<br/>(/scrutinize)"]
-    --> E([Shipped!])
+    --> E["5. Commit<br/>(/git-commit)"]
+    --> F([Shipped!])
 
-    C -. "Bug encountered" .-> F["5. Debugging<br/>(/debug-mantra)"]
-    F --> G["6. Record RCA<br/>(/post-mortem)"]
-    G -.-> C
+    C -. "Bug encountered" .-> G["6. Debugging<br/>(/debug-mantra)"]
+    G --> H["7. Record RCA<br/>(/post-mortem)"]
+    H -.-> C
 
-    Anywhere -. "Context full / Session switch" .-> H["7. Transfer<br/>(/handoff)"]
+    Anywhere -. "Context full / Session switch" .-> I["8. Transfer<br/>(/handoff)"]
+    Anywhere -. "Token compression" .-> J["9. Compressed Mode<br/>(/caveman)"]
+    Anywhere -. "Extend capabilities" .-> K["10. Discover Skills<br/>(/find-skills)"]
 ```
 
 1. **Ideation & Clarification:** When starting a new feature or architectural change, use `/grill-with-docs` (in a repository) or `/grill-me` (general ideation). Settle all questions on the frontier.
 2. **Decomposition:** Once requirements crystallize, run `/spec-to-tasks`. Do not jump straight to coding. Generate the spec and vertical tracer-bullet checklist.
 3. **Execution:** Execute tasks sequentially under `karpathy-guidelines`. Write minimal code, avoid speculative abstractions, and keep edits strictly surgical.
 4. **Review:** Run `/scrutinize` to audit the diff and trace real execution paths cold before declaring completion.
-5. **Incidents & Regressions:** If unexpected failures occur, pause coding and enter `/debug-mantra`. Once verified, capture the fix in `/post-mortem`.
-6. **Session Boundaries:** If token limits approach or when handing off to a different agent, invoke `/handoff`.
+5. **Commit & Staging:** Execute `/git-commit` to stage changes logically and write clear Conventional Commit messages reflecting the actual diff.
+6. **Incidents & Regressions:** If unexpected failures occur, pause coding and enter `/debug-mantra`. Once verified, capture the fix in `/post-mortem`.
+7. **Session Boundaries:** If token limits approach or when handing off to a different agent, invoke `/handoff`.
+8. **Token Efficiency:** Toggle `/caveman` (lite, full, ultra, or off) to cut response latency and conserve context window tokens during active coding.
+9. **Capability Extension:** Use `/find-skills` whenever new specialized tools, domain knowledge, or workflow patterns are needed from the ecosystem.
 
 ---
 

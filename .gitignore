@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Agent local client installs & runtime cache
+.agents/
+.claude/
+agent/
+.agents
+skills-lock.json
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
